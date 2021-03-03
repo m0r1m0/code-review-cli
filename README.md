@@ -1,13 +1,9 @@
-# node-typescript-boilerplate
+# code-review-cli
 
-A template for [Node.js](https://github.com/nodejs/node) & [Typescript](https://github.com/microsoft/TypeScript) projects.
+A CLI tool for code review without PullRequest.
 
-## What is included
+## TODO
 
-- [Node.js](https://github.com/nodejs/node)
-- [Typescript](https://github.com/microsoft/TypeScript)
-- [Jest](https://github.com/facebook/jest)
-- [ESLint](https://github.com/eslint/eslint)
-  - `eslint:recommended`, `plugin:@typescript-eslint/recommended`
-- [Prettier](https://github.com/prettier/prettier)
-- VSCode setting for ESLint and Prettier
+- [ ] Files changed
+- [ ] Test result
+- [ ] Lint result
