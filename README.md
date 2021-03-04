@@ -4,7 +4,7 @@ A CLI tool for code review without PullRequest.
 
 ## TODO
 
-- [ ] Files changed
+- [x] Files changed
 - [ ] Test result
 - [ ] Lint result
 
