@@ -7,3 +7,9 @@ A CLI tool for code review without PullRequest.
 - [ ] Files changed
 - [ ] Test result
 - [ ] Lint result
+
+## Options
+
+### `-b` `--branch`
+
+Parent branch for `git diff [branch]..HEAD`
