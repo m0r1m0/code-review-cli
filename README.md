@@ -6,7 +6,7 @@ A CLI tool for code review without PullRequest.
 
 - [x] Files changed
 - [ ] Test result
-- [ ] Lint result
+- [x] Lint result
 
 ## Options
 
