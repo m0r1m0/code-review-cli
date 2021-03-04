@@ -1,4 +1,5 @@
 import { exec } from "child_process";
+import yargs from "yargs";
 
 interface FileChanged {
   status: string;
@@ -28,11 +29,19 @@ function getFilesChanged(branch: string): FileChanged[] {
   return [];
 }
 
-function run(args: string[]) {
-  const branch = args.length > 0 ? args[0] : undefined;
-  if (branch !== undefined) {
-    const filesChanged = getFilesChanged(branch);
-  }
+function run(args: Args) {
+  const filesChanged = getFilesChanged(args.branch);
 }
 
-run(process.argv.slice(2));
+type Args = typeof args;
+
+const args = yargs(process.argv.slice(2)).options({
+  branch: {
+    type: "string",
+    description: "parent branch ex) origin/main",
+    demandOption: true,
+    alias: "b",
+  },
+}).argv;
+
+run(args);
