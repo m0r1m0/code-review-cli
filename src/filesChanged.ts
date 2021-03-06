@@ -18,7 +18,7 @@ export function getFilesChanged(branch: string): FileChanged[] {
       };
     })
     .filter((v) => v.status !== "" && v.file !== undefined);
-  console.log("--- [origin/main..HEAD] Files changed ---");
+  console.log(`--- [${branch}..HEAD] Files changed ---`);
   for (const fileChanged of filesChanged) {
     console.log(`${fileChanged.status}\t${fileChanged.file}`);
   }
