@@ -1,31 +1,7 @@
-import { execSync } from "child_process";
 import yargs from "yargs";
 import { ESLint } from "eslint";
-
-interface FileChanged {
-  status: string;
-  file: string;
-}
-
-function getFilesChanged(branch: string): FileChanged[] {
-  const result = execSync(`git diff --name-status ${branch}..HEAD`);
-  const stdout = result.toString();
-  const changes = stdout.split("\n");
-  const filesChanged: FileChanged[] = changes
-    .map((c) => {
-      const [status, file] = c.split("\t");
-      return {
-        status,
-        file,
-      };
-    })
-    .filter((v) => v.status !== "" && v.file !== undefined);
-  console.log("--- [origin/main..HEAD] Files changed ---");
-  for (const fileChanged of filesChanged) {
-    console.log(`${fileChanged.status}\t${fileChanged.file}`);
-  }
-  return filesChanged;
-}
+import { getFilesChanged } from "./filesChanged";
+import { getLinesChanged } from "./linesChanged";
 
 async function getLintResult(paths: string[]): Promise<ESLint.LintResult[]> {
   const eslint = new ESLint({
@@ -43,7 +19,8 @@ async function getLintResult(paths: string[]): Promise<ESLint.LintResult[]> {
 
 async function run(args: Args) {
   const filesChanged = getFilesChanged(args.branch);
-  getLintResult(filesChanged.map((v) => v.file));
+  await getLintResult(filesChanged.map((v) => v.file));
+  getLinesChanged(args.branch);
 }
 
 type Args = typeof args;
