@@ -23,8 +23,8 @@ async function getLintResult(paths: string[]): Promise<ESLint.LintResult[]> {
 
 async function run(args: Args) {
   const filesChanged = getFilesChanged(args.branch);
-  await getLintResult(filesChanged.map((v) => v.file));
   getLinesChanged(args.branch);
+  await getLintResult(filesChanged.map((v) => v.file));
 }
 
 type Args = typeof args;
