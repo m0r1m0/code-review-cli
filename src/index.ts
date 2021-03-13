@@ -13,7 +13,11 @@ async function getLintResult(paths: string[]): Promise<ESLint.LintResult[]> {
   const formatter = await eslint.loadFormatter("stylish");
   const resultText = formatter.format(results);
   console.log("---------------- ESLint -----------------");
-  console.log(resultText);
+  if (resultText.length > 0) {
+    console.log(resultText);
+  } else {
+    console.log("No lint error");
+  }
   return results;
 }
 

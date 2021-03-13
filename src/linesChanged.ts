@@ -11,7 +11,11 @@ export function getLinesChanged(branch: string): LinesChanged {
   );
   console.log(`--- [${branch}..HEAD] Lines changed ---`);
   const resultText = result.toString();
-  console.log(resultText);
+  if (resultText.length > 0) {
+    console.log(resultText);
+  } else {
+    console.log("No lines changed");
+  }
   const [insertions, deletions] = resultText.split("\n");
   return {
     insertions: Number(insertions),

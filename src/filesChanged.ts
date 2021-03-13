@@ -22,5 +22,8 @@ export function getFilesChanged(branch: string): FileChanged[] {
   for (const fileChanged of filesChanged) {
     console.log(`${fileChanged.status}\t${fileChanged.file}`);
   }
+  if (filesChanged.length === 0) {
+    console.log("No file changed");
+  }
   return filesChanged;
 }
