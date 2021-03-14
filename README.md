@@ -7,7 +7,7 @@ A CLI tool for code review without PullRequest.
 - [x] Diff
   - [x] Files changed
   - [x] Lines changed
-- [ ] Test result
+- [x] Test result
 - [x] Lint result
 
 ## Options
