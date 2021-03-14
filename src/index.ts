@@ -2,6 +2,7 @@ import yargs from "yargs";
 import { ESLint } from "eslint";
 import { getFilesChanged } from "./filesChanged";
 import { getLinesChanged } from "./linesChanged";
+import { getTestResult } from "./getTestResult";
 
 async function getLintResult(paths: string[]): Promise<ESLint.LintResult[]> {
   const eslint = new ESLint({
@@ -25,6 +26,7 @@ async function run(args: Args) {
   const filesChanged = getFilesChanged(args.branch);
   getLinesChanged(args.branch);
   await getLintResult(filesChanged.map((v) => v.file));
+  getTestResult(args.testOptions?.map((v) => v.toString()));
 }
 
 type Args = typeof args;
@@ -35,6 +37,11 @@ const args = yargs(process.argv.slice(2)).options({
     description: "parent branch ex) origin/main",
     demandOption: true,
     alias: "b",
+  },
+  testOptions: {
+    type: "array",
+    description: "test options",
+    alias: "t",
   },
 }).argv;
 
